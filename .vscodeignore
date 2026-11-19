@@ -1,0 +1,14 @@
+.vscode/**
+.idea/**
+Commands/**
+Execute/**
+Git Management/**
+Git Repo Manager/**
+HTML Chrome Debugger/**
+Smart Commit Generator/**
+src/**
+tsconfig.json
+.git/**
+.gitignore
+.build.ps1
+.artifacts/**

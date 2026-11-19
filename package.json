@@ -1,0 +1,818 @@
+{
+  "name": "x-vscode-tools",
+  "displayName": "xVSCodeTools",
+  "description": "All-in-one VS Code toolkit combining Script Runner, Git Management, Git Repo Manager, HTML Chrome Debugger, and Smart Commit Generator.",
+  "version": "1.0.0",
+  "publisher": "xconflictionx",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "SCM Providers",
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./build/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "gitRepoManagerView",
+          "name": "Git Repositories",
+          "icon": "$(repo)",
+          "contextualTitle": "Git Repo Manager"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "gitRepoManagerView",
+        "contents": "No base directory configured for Git Repo Manager.\n[Select Search Directory](command:gitRepoManager.selectBaseDirectory)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "x-script-runner.runFile",
+        "title": "Run File (Script or Executable)",
+        "category": "Script Runner",
+        "icon": "$(play)"
+      },
+      {
+        "command": "git-management.initializeRepository",
+        "title": "Initialize Repository, Stage & Commit...",
+        "category": "Git Management",
+        "icon": "$(repo)"
+      },
+      {
+        "command": "git-management.generateGitignore",
+        "title": "Download .gitignore Template...",
+        "category": "Git Management",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "git-management.addToGitignoreAndUntrack",
+        "title": "Add to .gitignore & Untrack",
+        "category": "Git Management",
+        "icon": "$(diff-ignored)"
+      },
+      {
+        "command": "git-management.removeFromGitignoreAndTrack",
+        "title": "Track and Remove from .gitignore",
+        "category": "Git Management",
+        "icon": "$(diff-added)"
+      },
+      {
+        "command": "git-management.cleanUntrackedCache",
+        "title": "Clean Untracked Git Ignore Cache",
+        "category": "Git Management",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "git-management.auditGlobalConfig",
+        "title": "Audit Global Git Configuration...",
+        "category": "Git Management",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "gitRepoManager.openQuickPick",
+        "title": "Open Repository...",
+        "category": "Git Repo Manager",
+        "icon": "$(search)"
+      },
+      {
+        "command": "gitRepoManager.openCommandCenter",
+        "title": "Multi-Repository Command Center",
+        "category": "Git Repo Manager",
+        "icon": "$(organization)"
+      },
+      {
+        "command": "gitRepoManager.createFolder",
+        "title": "New Project Folder...",
+        "category": "Git Repo Manager",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "gitRepoManager.selectBaseDirectory",
+        "title": "Select Search Directory",
+        "category": "Git Repo Manager",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "gitRepoManager.addDirectory",
+        "title": "Add Search Directory",
+        "category": "Git Repo Manager",
+        "icon": "$(add)"
+      },
+      {
+        "command": "gitRepoManager.refresh",
+        "title": "Refresh Repositories",
+        "category": "Git Repo Manager",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gitRepoManager.openSettings",
+        "title": "Open Settings",
+        "category": "Git Repo Manager",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "gitRepoManager.openRepoCurrentWindow",
+        "title": "Open in Current Window",
+        "category": "Git Repo Manager",
+        "icon": "$(window)"
+      },
+      {
+        "command": "gitRepoManager.openRepoNewWindow",
+        "title": "Open in New Window",
+        "category": "Git Repo Manager",
+        "icon": "$(empty-window)"
+      },
+      {
+        "command": "gitRepoManager.pinRepo",
+        "title": "Pin to Favorites",
+        "category": "Git Repo Manager",
+        "icon": "$(star)"
+      },
+      {
+        "command": "gitRepoManager.unpinRepo",
+        "title": "Remove from Favorites",
+        "category": "Git Repo Manager",
+        "icon": "$(star-full)"
+      },
+      {
+        "command": "gitRepoManager.revealInExplorer",
+        "title": "Reveal in File Explorer",
+        "category": "Git Repo Manager",
+        "icon": "$(folder)"
+      },
+      {
+        "command": "gitRepoManager.openInTerminal",
+        "title": "Open in Integrated Terminal",
+        "category": "Git Repo Manager",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "gitRepoManager.copyPath",
+        "title": "Copy Path",
+        "category": "Git Repo Manager",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "gitRepoManager.syncRepo",
+        "title": "Sync Repository (Pull & Push)",
+        "category": "Git Repo Manager",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "gitRepoManager.hideRepo",
+        "title": "Hide Repository",
+        "category": "Git Repo Manager",
+        "icon": "$(eye-closed)"
+      },
+      {
+        "command": "gitRepoManager.unhideRepo",
+        "title": "Unhide Repository",
+        "category": "Git Repo Manager",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "gitRepoManager.deleteRepo",
+        "title": "Delete Local Project (Move to Recycle Bin)",
+        "category": "Git Repo Manager",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "htmlChromeDebugger.debugFile",
+        "title": "Debug in Chrome (Live Server)",
+        "category": "HTML Debugger",
+        "icon": "$(play)"
+      },
+      {
+        "command": "htmlChromeDebugger.stopServer",
+        "title": "Stop HTML Live Server",
+        "category": "HTML Debugger",
+        "icon": "$(stop)"
+      },
+      {
+        "command": "htmlChromeDebugger.openInChrome",
+        "title": "Open Current Page in Chrome",
+        "category": "HTML Debugger",
+        "icon": "$(browser)"
+      },
+      {
+        "command": "smart-commit-generator.generate",
+        "title": "Generate Commit Message",
+        "category": "Smart Commit",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "smart-commit-generator.generateWithOptions",
+        "title": "Generate Commit Message (Choose Style...)",
+        "category": "Smart Commit",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "smart-commit-generator.configure",
+        "title": "Configure Smart Commit Generator Settings",
+        "category": "Smart Commit",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "git-management.templateGenerator",
+        "title": "Repository Template Generator...",
+        "category": "Git Management",
+        "icon": "$(template)"
+      },
+      {
+        "command": "fileTools.copyFileContents",
+        "title": "Copy File Contents",
+        "category": "File Tools",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "fileTools.openAsTextInChrome",
+        "title": "Open as Text in Chrome",
+        "category": "File Tools",
+        "icon": "$(browser)"
+      },
+      {
+        "command": "fileTools.copyPath",
+        "title": "Copy Path",
+        "category": "File Tools",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "fileTools.copyFileHash",
+        "title": "Copy File Hash (SHA-256)",
+        "category": "File Tools",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "fileTools.showMetadata",
+        "title": "Show File Metadata",
+        "category": "File Tools",
+        "icon": "$(info)"
+      },
+      {
+        "command": "fileTools.alphabetizeLines",
+        "title": "Alphabetize Lines / File...",
+        "category": "File Tools",
+        "icon": "$(sort-asc)"
+      },
+      {
+        "command": "fileTools.deduplicateLines",
+        "title": "De-Duplicate Lines...",
+        "category": "File Tools",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "fileTools.addToPath",
+        "title": "Add Folder to PATH...",
+        "category": "File Tools",
+        "icon": "$(add)"
+      },
+      {
+        "command": "systemTools.checkInternet",
+        "title": "Check for Internet",
+        "category": "System & Network",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "systemTools.flushDns",
+        "title": "Flush DNS Cache",
+        "category": "System & Network",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "systemTools.networkInfo",
+        "title": "Network Information",
+        "category": "System & Network",
+        "icon": "$(radio-tower)"
+      },
+      {
+        "command": "git-management.configureXServerOrigin",
+        "title": "Configure xServer as Origin...",
+        "category": "Git Management",
+        "icon": "$(server)"
+      },
+      {
+        "command": "git-management.deleteXServerRepository",
+        "title": "Delete Repository from xServer...",
+        "category": "Git Management",
+        "icon": "$(server)"
+      },
+      {
+        "command": "smart-commit-generator.selectOllamaModel",
+        "title": "Select xServer Model...",
+        "category": "Smart Commit",
+        "icon": "$(server)"
+      },
+      {
+        "command": "smart-commit-generator.setOllamaApiKey",
+        "title": "Set Ollama API Key...",
+        "category": "Smart Commit",
+        "icon": "$(key)"
+      },
+      {
+        "command": "smart-commit-generator.clearOllamaApiKey",
+        "title": "Clear Ollama API Key",
+        "category": "Smart Commit",
+        "icon": "$(key)"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "xToolsMenu",
+        "label": "xVSCodeTools"
+      },
+      {
+        "id": "xToolsFileMenu",
+        "label": "File & Editing"
+      },
+      {
+        "id": "xToolsProjectMenu",
+        "label": "Git & Projects"
+      },
+      {
+        "id": "xToolsDevMenu",
+        "label": "Web & System"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "xToolsMenu",
+          "group": "navigation@99"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "xToolsMenu",
+          "group": "navigation@99"
+        }
+      ],
+      "scm/repository": [
+        {
+          "command": "smart-commit-generator.generate",
+          "when": "scmRepository",
+          "group": "navigation@1"
+        },
+        {
+          "command": "smart-commit-generator.generateWithOptions",
+          "when": "scmRepository",
+          "group": "navigation@2"
+        }
+      ],
+      "scm/title": [
+        {
+          "command": "smart-commit-generator.generate",
+          "when": "scmProvider == git",
+          "group": "navigation@1"
+        },
+        {
+          "command": "smart-commit-generator.generateWithOptions",
+          "when": "scmProvider == git",
+          "group": "1_smartCommit@2"
+        }
+      ],
+      "xToolsMenu": [
+        {
+          "submenu": "xToolsFileMenu",
+          "group": "1_file@1"
+        },
+        {
+          "submenu": "xToolsProjectMenu",
+          "group": "2_project@1"
+        },
+        {
+          "submenu": "xToolsDevMenu",
+          "group": "3_dev@1"
+        },
+        {
+          "command": "smart-commit-generator.selectOllamaModel",
+          "group": "4_smartCommit@1"
+        },
+        {
+          "command": "smart-commit-generator.setOllamaApiKey",
+          "group": "4_smartCommit@2"
+        }
+      ],
+      "xToolsFileMenu": [
+        {
+          "command": "x-script-runner.runFile",
+          "group": "1_runner@1"
+        },
+        {
+          "command": "fileTools.copyPath",
+          "group": "5_fileTools@1"
+        },
+        {
+          "command": "fileTools.openAsTextInChrome",
+          "group": "5_fileTools@1.5"
+        },
+        {
+          "command": "fileTools.copyFileContents",
+          "group": "5_fileTools@2"
+        },
+        {
+          "command": "fileTools.copyFileHash",
+          "group": "5_fileTools@3"
+        },
+        {
+          "command": "fileTools.showMetadata",
+          "group": "5_fileTools@4"
+        },
+        {
+          "command": "fileTools.addToPath",
+          "group": "5_fileTools@5"
+        },
+        {
+          "command": "fileTools.alphabetizeLines",
+          "group": "5_fileTools@6"
+        },
+        {
+          "command": "fileTools.deduplicateLines",
+          "group": "5_fileTools@7"
+        }
+      ],
+      "xToolsProjectMenu": [
+        {
+          "command": "git-management.configureXServerOrigin",
+          "group": "1_gitManagement@0"
+        },
+        {
+          "command": "git-management.deleteXServerRepository",
+          "group": "1_gitManagement@0.5"
+        },
+        {
+          "command": "git-management.initializeRepository",
+          "group": "1_gitManagement@1"
+        },
+        {
+          "command": "git-management.generateGitignore",
+          "group": "1_gitManagement@2"
+        },
+        {
+          "command": "git-management.addToGitignoreAndUntrack",
+          "when": "resourcePath not in gitManagement.ignoredPaths && resource not in gitManagement.ignoredPaths",
+          "group": "1_gitManagement@2.5"
+        },
+        {
+          "command": "git-management.removeFromGitignoreAndTrack",
+          "when": "resourcePath in gitManagement.ignoredPaths || resource in gitManagement.ignoredPaths",
+          "group": "1_gitManagement@2.5"
+        },
+        {
+          "command": "git-management.cleanUntrackedCache",
+          "group": "1_gitManagement@3"
+        },
+        {
+          "command": "git-management.auditGlobalConfig",
+          "group": "1_gitManagement@3.5"
+        },
+        {
+          "command": "git-management.templateGenerator",
+          "group": "1_gitManagement@4"
+        }
+      ],
+      "xToolsDevMenu": [
+        {
+          "command": "htmlChromeDebugger.debugFile",
+          "group": "1_htmlDebugger@1"
+        },
+        {
+          "command": "htmlChromeDebugger.openInChrome",
+          "group": "1_htmlDebugger@2"
+        },
+        {
+          "command": "systemTools.networkInfo",
+          "group": "2_systemTools@1"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "gitRepoManager.createFolder",
+          "when": "view == gitRepoManagerView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gitRepoManager.openCommandCenter",
+          "when": "view == gitRepoManagerView",
+          "group": "navigation@0"
+        },
+        {
+          "command": "gitRepoManager.openQuickPick",
+          "when": "view == gitRepoManagerView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "gitRepoManager.refresh",
+          "when": "view == gitRepoManagerView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "gitRepoManager.selectBaseDirectory",
+          "when": "view == gitRepoManagerView",
+          "group": "navigation@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gitRepoManager.createFolder",
+          "when": "view == gitRepoManagerView && viewItem == categoryItem",
+          "group": "inline@1"
+        },
+        {
+          "command": "gitRepoManager.createFolder",
+          "when": "view == gitRepoManagerView && viewItem == categoryItem",
+          "group": "0_actions@1"
+        },
+        {
+          "command": "gitRepoManager.unhideRepo",
+          "when": "view == gitRepoManagerView && (viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "inline@1"
+        },
+        {
+          "command": "gitRepoManager.openRepoCurrentWindow",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "inline@2"
+        },
+        {
+          "command": "gitRepoManager.openRepoNewWindow",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "inline@3"
+        },
+        {
+          "command": "gitRepoManager.unhideRepo",
+          "when": "view == gitRepoManagerView && (viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "0_favorites@1"
+        },
+        {
+          "command": "gitRepoManager.pinRepo",
+          "when": "view == gitRepoManagerView && viewItem == repoItem && !config.gitRepoManager.isPinned",
+          "group": "0_favorites@1"
+        },
+        {
+          "command": "gitRepoManager.unpinRepo",
+          "when": "view == gitRepoManagerView && viewItem == repoItemPinned",
+          "group": "0_favorites@1"
+        },
+        {
+          "command": "gitRepoManager.hideRepo",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned)",
+          "group": "0_favorites@2"
+        },
+        {
+          "command": "gitRepoManager.openRepoCurrentWindow",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "1_open@1"
+        },
+        {
+          "command": "gitRepoManager.openRepoNewWindow",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "1_open@2"
+        },
+        {
+          "command": "gitRepoManager.revealInExplorer",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "2_explore@1"
+        },
+        {
+          "command": "gitRepoManager.openInTerminal",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "2_explore@2"
+        },
+        {
+          "command": "gitRepoManager.syncRepo",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "3_actions@0"
+        },
+        {
+          "command": "gitRepoManager.copyPath",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "3_actions@1"
+        },
+        {
+          "command": "gitRepoManager.deleteRepo",
+          "when": "view == gitRepoManagerView && (viewItem == repoItem || viewItem == repoItemPinned || viewItem == repoItemHidden || viewItem == repoItemHiddenPinned)",
+          "group": "4_delete@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "gitRepoManager.openQuickPick",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r"
+      },
+      {
+        "command": "smart-commit-generator.generate",
+        "key": "ctrl+alt+g",
+        "mac": "cmd+alt+g",
+        "when": "editorTextFocus || scmRepository"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "xVSCodeTools",
+      "properties": {
+        "gitManagement.autoShowDiff": {
+          "type": "boolean",
+          "default": false,
+          "description": "(Deprecated) Kept for settings compatibility; downloaded templates are saved as files without merging."
+        },
+        "gitManagement.useGitHubApi": {
+          "type": "boolean",
+          "default": true,
+          "description": "Fetch live .gitignore templates from GitHub API when connected to internet."
+        },
+        "gitRepoManager.searchDirectories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List of absolute folder paths to scan for Git repositories."
+        },
+        "gitRepoManager.scanDepth": {
+          "type": "integer",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 6,
+          "description": "Maximum directory depth to scan recursively for Git repositories."
+        },
+        "gitRepoManager.openInNewWindow": {
+          "type": "boolean",
+          "default": false,
+          "description": "Always open selected repository in a new window instead of the current window."
+        },
+        "gitRepoManager.favoriteRepos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "List of pinned repository paths."
+        },
+        "gitRepoManager.hiddenRepos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            ".notes"
+          ],
+          "description": "List of repository names or absolute paths hidden from the active projects list."
+        },
+        "gitRepoManager.groupByParent": {
+          "type": "boolean",
+          "default": true,
+          "description": "Group repositories in the sidebar tree view by their parent directory."
+        },
+        "gitRepoManager.showGitBranch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Display active Git branch name next to repository entries in the tree view."
+        },
+        "gitRepoManager.autoExpandFolders": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically expand all categories and repository groups in the sidebar tree view."
+        },
+        "gitRepoManager.excludePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/.venv/**",
+            "**/vendor/**",
+            "**/target/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/$RECYCLE.BIN/**",
+            "**/System Volume Information/**"
+          ],
+          "description": "Glob patterns to ignore during repository scanning."
+        },
+        "htmlChromeDebugger.port": {
+          "type": "number",
+          "default": 8080,
+          "description": "Preferred HTTP live server port."
+        },
+        "htmlChromeDebugger.chromeDebuggingPort": {
+          "type": "number",
+          "default": 9222,
+          "description": "Chrome Remote Debugging Port used to control Chrome and reuse windows/tabs."
+        },
+        "htmlChromeDebugger.customChromePath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom absolute path to Google Chrome executable."
+        },
+        "htmlChromeDebugger.autoLiveReload": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically inject Live Reload client script into HTML files and reload browser on file save."
+        },
+        "htmlChromeDebugger.chromeFlags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional command line flags to pass when launching Google Chrome."
+        },
+        "smartCommit.format": {
+          "type": "string",
+          "enum": [
+            "conventional",
+            "emoji",
+            "simple",
+            "detailed"
+          ],
+          "default": "conventional",
+          "description": "Default commit message style when clicking the primary generate button."
+        },
+        "smartCommit.includeScope": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include auto-detected scope in conventional commit messages."
+        },
+        "smartCommit.includeBody": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include a bulleted list of changed files in the commit body."
+        },
+        "smartCommit.autoStageIfNone": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically stage working tree changes if no files are staged when generating a commit message."
+        },
+        "smartCommit.fallbackToUnstaged": {
+          "type": "boolean",
+          "default": true,
+          "description": "If no changes are staged, analyze unstaged working tree changes instead of failing."
+        },
+        "smartCommit.emojiStyle": {
+          "type": "string",
+          "enum": [
+            "gitmoji",
+            "simple"
+          ],
+          "default": "gitmoji",
+          "description": "Emoji set to use when Emoji style is selected."
+        },
+        "smartCommit.ollamaUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Base URL of your OpenAI-compatible / xServer inference gateway (e.g. https://inference.example.com/v1)."
+        },
+        "smartCommit.ollamaModel": {
+          "type": "string",
+          "default": "xAssistant",
+          "description": "Model exposed by the xServer inference gateway to use for commit messages. Defaults to xAssistant; any available model can be selected."
+        },
+        "xVSCodeTools.xServer.host": {
+          "type": "string",
+          "default": "",
+          "description": "Hostname or IP address of your xServer Git host (e.g. 192.168.1.50 or xserver)."
+        },
+        "xVSCodeTools.xServer.gitRoot": {
+          "type": "string",
+          "default": "/srv/git",
+          "description": "Root directory for bare Git repositories on xServer."
+        },
+        "xVSCodeTools.xServer.adminTarget": {
+          "type": "string",
+          "default": "",
+          "description": "SSH user@host target used for xServer repository administration (e.g. user@192.168.1.50)."
+        },
+        "gitRepoManager.showCommandCenterOnStartup": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically open the Multi-Repository Command Center when VS Code starts."
+        },
+        "xVSCodeTools.extensionUpdates.manage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Manage extension updates: disable VS Code automatic extension updates and update installed extensions only after VS Code itself is updated."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  }
+}
